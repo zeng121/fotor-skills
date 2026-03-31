@@ -1,9 +1,9 @@
 ---
 name: test-openapi
-description: Use when the user's intent is visual and the task can be solved with Fotor OpenAPI image or video generation, editing, transformation, enhancement, or batch output, including product photos, marketing creatives, posters,banners, social covers, background changes, upscaling, restoration, and other image- or video-related asset workflows.
+description: Use when the user's intent is visual and the task can be solved with Fotor OpenAPI image or video generation, editing, transformation, enhancement, batch output, or account credit lookup, including product photos, marketing creatives, posters,banners, social covers, background changes, upscaling, restoration, and other image- or video-related asset workflows.
 metadata:
   author: zeng121
-  version: "1.0.6"
+  version: "1.0.7"
 ---
 
 # test-openapi
@@ -73,7 +73,7 @@ echo '[
 
 **Options:** `--input FILE`, `--concurrency N` (default 5), `--poll-interval S` (default 2.0), `--timeout S` (default 1200).
 
-**Output:** JSON with `task_id`, `status`, `success`, `result_url`, `error`, `elapsed_seconds`, `tag`.
+**Output:** JSON with `task_id`, `status`, `success`, `result_url`, `error`, `elapsed_seconds`, `creditsIncrement`, `tag`.
 
 Automatic fallback:
 
@@ -164,6 +164,8 @@ Read these only when the user asks about installation, upgrade, workspace layout
 9. **Custom path** -- write inline Python using the SDK directly (see examples below), still preferring the local `.venv` interpreter.
 10. Check `result_url` in output. Chain `image_upscale` if higher resolution needed.
 
+If the user asks to check account credits or remaining credits, use the SDK client directly instead of `run_task.py`.
+
 Built-in automatic fallback mappings:
 
 - `text2image`: `gemini-3.1-flash-image-preview` -> `seedream-5-0-260128`
@@ -187,6 +189,28 @@ Built-in automatic fallback mappings:
 | `multiple_image2video` | `multiple_image2video()` | `prompt`, `model_id`, `image_urls` (≥2) |
 
 For full parameter details (defaults, `on_poll`, `**extra`), read `references/parameter_reference.md`.
+
+## Credit Lookup
+
+For account credit checks such as total credits or remaining credits, use the SDK client directly instead of `run_task.py`.
+
+```python
+import os
+from fotor_sdk import FotorClient
+
+client = FotorClient(
+    api_key=os.environ["FOTOR_OPENAPI_KEY"],
+    endpoint=os.environ.get("FOTOR_OPENAPI_ENDPOINT", "https://api.fotor.com"),
+)
+credits = client.get_credits_sync()
+print("credits:", credits)
+```
+
+Returns a dict like:
+
+```python
+{"businessId": "", "total": 2000, "remaining": 1973}
+```
 
 ## Inline Python Examples
 
@@ -236,6 +260,7 @@ result.result_url       # str | None
 result.status           # TaskStatus: COMPLETED / FAILED / TIMEOUT / IN_PROGRESS / CANCELLED
 result.error            # str | None (e.g. "NSFW_CONTENT")
 result.elapsed_seconds  # float
+result.creditsIncrement # int | float: credits consumed by this task
 result.metadata         # dict (includes "tag" from TaskRunner)
 ```
 

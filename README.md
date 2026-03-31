@@ -1,6 +1,6 @@
 # Fotor Skills
 
-Current public skill version: `1.0.6`
+Current public skill version: `1.0.7`
 
 This repository stores reusable [Agent Skills](https://skills.sh/) for Fotor AI.
 
@@ -16,7 +16,7 @@ This repository stores reusable [Agent Skills](https://skills.sh/) for Fotor AI.
 
 An async-first workflow for Fotor OpenAPI using the `fotor-sdk` package.
 
-Current compatibility target: this skill is adapted to `fotor-sdk` `0.1.3`.
+SDK compatibility follows the latest `fotor-sdk` release installed by `scripts/ensure_sdk.py`.
 
 It supports:
 
@@ -28,6 +28,7 @@ It supports:
 - Single Image-to-Video (`single_image2video`)
 - Start/End Frame Interpolation (`start_end_frame2video`)
 - Multiple Image-to-Video (`multiple_image2video`)
+- Credit lookup (`get_credits_sync`)
 
 The skill includes setup scripts, execution tooling, model references, and parameter documentation.
 
@@ -112,7 +113,7 @@ EOF
 ## Input and Output Format
 
 - Input: JSON object (single task) or JSON array (batch).
-- Output: structured JSON with fields such as `task_id`, `status`, `success`, `result_url`, `error`, `elapsed_seconds`, and `tag`.
+- Output: structured JSON with fields such as `task_id`, `status`, `success`, `result_url`, `error`, `elapsed_seconds`, `creditsIncrement`, and `tag`.
 
 ## Scripts
 
@@ -124,6 +125,8 @@ EOF
   - Run one or more OpenAPI tasks from JSON input.
 - `scripts/check_skill_update.py`
   - Checks whether a newer version of the installed skill is available.
+
+For credit lookup via `client.get_credits_sync()`, the SDK returns a dict like `{"businessId": "", "total": 2000, "remaining": 1973}`.
 
 ## Model and Parameter References
 

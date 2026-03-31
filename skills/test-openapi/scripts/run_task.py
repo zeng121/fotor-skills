@@ -81,6 +81,7 @@ def _result_to_dict(r: TaskResult) -> dict:
         "result_url": r.result_url,
         "error": r.error,
         "elapsed_seconds": round(r.elapsed_seconds, 2),
+        "creditsIncrement": getattr(r, "creditsIncrement", 0),
         "tag": r.metadata.get("tag", ""),
         "fallback_used": False,
         "original_model_id": "",
@@ -99,7 +100,7 @@ async def _run_single(client: FotorClient, spec: dict) -> dict:
     if fn is None:
         return {"task_id": "", "status": "FAILED", "success": False,
                 "error": f"Unknown task_type: {task_type}", "result_url": None,
-                "elapsed_seconds": 0, "tag": spec.get("tag", ""),
+                "elapsed_seconds": 0, "creditsIncrement": 0, "tag": spec.get("tag", ""),
                 "fallback_used": False, "original_model_id": "", "fallback_model_id": ""}
     try:
         result = await fn(client, **params)
@@ -131,6 +132,7 @@ async def _run_single(client: FotorClient, spec: dict) -> dict:
                     ),
                     "result_url": None,
                     "elapsed_seconds": 0,
+                    "creditsIncrement": 0,
                     "tag": spec.get("tag", ""),
                     "fallback_used": True,
                     "original_model_id": original_model_id,
@@ -138,7 +140,7 @@ async def _run_single(client: FotorClient, spec: dict) -> dict:
                 }
         return {"task_id": "", "status": "FAILED", "success": False,
                 "error": f"{e} (code={e.code})", "result_url": None,
-                "elapsed_seconds": 0, "tag": spec.get("tag", ""),
+                "elapsed_seconds": 0, "creditsIncrement": 0, "tag": spec.get("tag", ""),
                 "fallback_used": False,
                 "original_model_id": original_model_id,
                 "fallback_model_id": ""}

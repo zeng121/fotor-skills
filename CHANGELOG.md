@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.7 - 2026-03-31
+- Include `creditsIncrement` in `scripts/run_task.py` output so each task result reports consumed credits
+- Cover account credit lookup in `SKILL.md`, including `get_credits_sync()` usage and the returned `businessId` / `total` / `remaining` fields
+
 ## v1.0.6 - 2026-03-31
 - Recompute `update_available` from cached `latest_version` and the current local version to avoid stale update reminders after upgrading
 
