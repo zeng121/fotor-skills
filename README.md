@@ -1,18 +1,14 @@
 # Fotor Skills
 
-Current public skill version: `1.0.1`
+Current public skill version: `1.0.5`
 
 This repository stores reusable [Agent Skills](https://skills.sh/) for Fotor AI.
 
 ## Version Management
 
-Version management is intentionally simple and source-aligned:
-
-- `skills/test-openapi/SKILL.md` frontmatter `metadata.version` is the canonical version source for the GitHub / `npx skills` distribution path.
-- ClawHub releases should use the same version number.
-- Git tags should stay aligned with the same version when publishing updates.
-- For the GitHub / `npx skills` path, update notes should be maintained in the repository `CHANGELOG.md`.
-- Avoid maintaining a separate root-level `VERSION` file.
+- Keep `skills/test-openapi/SKILL.md` `metadata.version` aligned with the current published skill version.
+- Keep `CHANGELOG.md` updated for GitHub / `npx skills` installs.
+- Avoid a separate root-level `VERSION` file.
 
 ## Current Skill
 
@@ -33,7 +29,7 @@ It supports:
 - Start/End Frame Interpolation (`start_end_frame2video`)
 - Multiple Image-to-Video (`multiple_image2video`)
 
-The skill includes setup scripts, execution tooling, model references, parameter documentation, and install-source-aware update checking.
+The skill includes setup scripts, execution tooling, model references, and parameter documentation.
 
 ## Repository Structure
 
@@ -70,13 +66,19 @@ npx skills add https://github.com/zeng121/skill-beta.git --skill test-openapi
 cd skills/test-openapi
 ```
 
-2. Upgrade the SDK to the latest version:
+2. Create a local virtual environment if needed:
 
 ```bash
-python scripts/ensure_sdk.py
+python3 -m venv .venv
 ```
 
-3. Configure your API key. Recommended local `.env` setup:
+3. Upgrade the SDK to the latest version:
+
+```bash
+./.venv/bin/python scripts/ensure_sdk.py
+```
+
+4. Configure your API key. Recommended local `.env` setup:
 
 ```bash
 cat > .env <<'EOF'
@@ -86,10 +88,10 @@ EOF
 set -a && source .env && set +a
 ```
 
-4. Run a sample task:
+5. Run a sample task:
 
 ```bash
-cat <<'EOF' | python scripts/run_task.py
+cat <<'EOF' | ./.venv/bin/python scripts/run_task.py
 {"task_type":"text2image","params":{"prompt":"A cat astronaut","model_id":"seedream-4-5-251128"}}
 EOF
 ```
@@ -99,7 +101,7 @@ EOF
 You can run multiple tasks in parallel:
 
 ```bash
-cat <<'EOF' | python scripts/run_task.py --concurrency 5
+cat <<'EOF' | ./.venv/bin/python scripts/run_task.py --concurrency 5
 [
   {"task_type":"text2image","params":{"prompt":"A neon city","model_id":"seedream-4-5-251128"},"tag":"img-1"},
   {"task_type":"text2video","params":{"prompt":"A futuristic skyline","model_id":"kling-v3","duration":5},"tag":"vid-1"}
@@ -115,24 +117,13 @@ EOF
 ## Scripts
 
 - `scripts/ensure_sdk.py`
-  - Upgrades `fotor-sdk` to the latest PyPI version each time it runs.
-  - `--upgrade` is kept as an explicit alias for the same behavior.
+  - Install or upgrade `fotor-sdk`.
 - `scripts/upload_image.py`
-  - Uploads a local image file and returns a reusable `file_url`.
-  - Requires `--task-type` and maps tasks as follows:
-    - `image2image` -> `img2img`
-    - `image_upscale` -> `img_upscale`
-    - `background_remove` -> `bg_remove`
-    - `single_image2video` -> `img2video`
-    - `start_end_frame2video` -> `img2video`
-    - `multiple_image2video` -> `img2video`
+  - Upload a local image file and return a reusable `file_url`.
 - `scripts/run_task.py`
-  - Runs one or more tasks from stdin or `--input`.
-  - Supports `--concurrency`, `--poll-interval`, and `--timeout`.
+  - Run one or more OpenAPI tasks from JSON input.
 - `scripts/check_skill_update.py`
-  - Detects whether the skill was installed via ClawHub or via GitHub / `npx skills`.
-  - Uses the matching version-check backend.
-  - Supports a low-frequency cached update reminder flow.
+  - Checks whether a newer version of the installed skill is available.
 
 ## Model and Parameter References
 
@@ -161,6 +152,6 @@ Use these files when selecting models and building parameters:
 When updating this repository:
 
 - Keep `skills/test-openapi/SKILL.md` `metadata.version` aligned with the published version.
-- Keep GitHub tags / releases and ClawHub releases aligned to the same version.
+- Keep `CHANGELOG.md` aligned with the published version.
 - Update reference documents when model lists or capabilities change.
 - Keep runnable command examples in `SKILL.md` and this README aligned.
