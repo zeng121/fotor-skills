@@ -16,7 +16,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parent.parent
 META_PATH = ROOT / "_meta.json"
 SKILL_MD_PATH = ROOT / "SKILL.md"
-USER_AGENT = "test-openapi-update-check/1.0"
+USER_AGENT = "fotor-skills-update-check/1.0"
 
 
 def http_get_json(url: str, timeout: float = 8.0) -> dict[str, Any]:

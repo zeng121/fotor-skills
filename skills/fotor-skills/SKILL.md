@@ -1,12 +1,12 @@
 ---
-name: test-openapi
+name: fotor-skills
 description: Use when the user's intent is visual and the task can be solved with Fotor OpenAPI image or video generation, editing, transformation, enhancement, batch output, or account credit lookup, including product photos, marketing creatives, posters,banners, social covers, background changes, upscaling, restoration, and other image- or video-related asset workflows.
 metadata:
-  author: zeng121
+  author: fotor-ai
   version: "1.0.7"
 ---
 
-# test-openapi
+# fotor-skills
 
 Async-first Python SDK for the Fotor OpenAPI. No MCP -- just an API key.
 
@@ -130,7 +130,7 @@ Check whether the installed skill has a newer version available for the current 
 For development/testing when install-source metadata is unavailable:
 
 ```bash
-./.venv/bin/python scripts/check_skill_update.py --install-source skills-github --slug test-openapi --current-version 1.0.0 --github-source zeng121/skill-beta --mark-notified --check-interval-hours 24
+./.venv/bin/python scripts/check_skill_update.py --install-source skills-github --slug fotor-skills --current-version 1.0.0 --github-source fotor-ai/fotor-skills --mark-notified --check-interval-hours 24
 ```
 
 The script:
@@ -162,7 +162,7 @@ Read these when choosing a model, validating parameters, or mapping an ambiguous
 
 Read these only when the user asks about installation, upgrade, workspace layout, or credential setup. Do not read them for normal image/video task execution.
 
-- `references/install-or-upgrade.md` -- how to install or upgrade `test-openapi` for both ClawHub and `npx skills`, and how to phrase a concise non-pushy upgrade reminder
+- `references/install-or-upgrade.md` -- how to install or upgrade `fotor-skills` for both ClawHub and `npx skills`, and how to phrase a concise non-pushy upgrade reminder
 - `references/configure-fotor-openapi-key.md` -- how to set, persist, verify, and safely handle `FOTOR_OPENAPI_KEY`
 
 ## Workflow

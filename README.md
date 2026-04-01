@@ -6,13 +6,13 @@ This repository stores reusable [Agent Skills](https://skills.sh/) for Fotor AI.
 
 ## Version Management
 
-- Keep `skills/test-openapi/SKILL.md` `metadata.version` aligned with the current published skill version.
+- Keep `skills/fotor-skills/SKILL.md` `metadata.version` aligned with the current published skill version.
 - Keep `CHANGELOG.md` updated for GitHub / `npx skills` installs.
 - Avoid a separate root-level `VERSION` file.
 
 ## Current Skill
 
-### `test-openapi`
+### `fotor-skills`
 
 An async-first workflow for Fotor OpenAPI using the `fotor-sdk` package.
 
@@ -38,7 +38,7 @@ The skill includes setup scripts, execution tooling, model references, and param
 .
 ├── README.md
 └── skills/
-    └── test-openapi/
+    └── fotor-skills/
         ├── SKILL.md
         ├── agents/
         ├── references/
@@ -50,13 +50,13 @@ The skill includes setup scripts, execution tooling, model references, and param
 ### ClawHub
 
 ```bash
-clawhub install test-openapi
+clawhub install fotor-skills
 ```
 
 ### GitHub / `npx skills`
 
 ```bash
-npx skills add https://github.com/zeng121/skill-beta.git --skill test-openapi
+npx skills add https://github.com/fotor-ai/fotor-skills.git --skill fotor-skills
 ```
 
 ## Quick Start
@@ -64,7 +64,7 @@ npx skills add https://github.com/zeng121/skill-beta.git --skill test-openapi
 1. Enter the skill directory:
 
 ```bash
-cd skills/test-openapi
+cd skills/fotor-skills
 ```
 
 2. Create a local virtual environment if needed:
@@ -132,9 +132,9 @@ For credit lookup via `client.get_credits_sync()`, the SDK returns a dict like `
 
 Use these files when selecting models and building parameters:
 
-- `skills/test-openapi/references/image_models.md`
-- `skills/test-openapi/references/video_models.md`
-- `skills/test-openapi/references/parameter_reference.md`
+- `skills/fotor-skills/references/image_models.md`
+- `skills/fotor-skills/references/video_models.md`
+- `skills/fotor-skills/references/parameter_reference.md`
 
 ## Environment Variables
 
@@ -154,7 +154,7 @@ Use these files when selecting models and building parameters:
 
 When updating this repository:
 
-- Keep `skills/test-openapi/SKILL.md` `metadata.version` aligned with the published version.
+- Keep `skills/fotor-skills/SKILL.md` `metadata.version` aligned with the published version.
 - Keep `CHANGELOG.md` aligned with the published version.
 - Update reference documents when model lists or capabilities change.
 - Keep runnable command examples in `SKILL.md` and this README aligned.

@@ -1,4 +1,4 @@
-# Install or Upgrade `test-openapi`
+# Install or Upgrade `fotor-skills`
 
 Use this guide when the user asks how to install or upgrade the skill, or when the update checker reports that a newer version is available.
 
@@ -26,20 +26,20 @@ Supported install sources:
 ### Install
 
 ```bash
-clawhub install test-openapi
+clawhub install fotor-skills
 ```
 
 ### Upgrade
 
 ```bash
-clawhub update test-openapi
+clawhub update fotor-skills
 ```
 
 ### What to say
 
 Use a short reminder like:
 
-> `test-openapi` has a newer version available. If you want, you can upgrade with `clawhub update test-openapi`.
+> `fotor-skills` has a newer version available. If you want, you can upgrade with `clawhub update fotor-skills`.
 
 If highlights are available, add one short clause with the main changes. Do not dump the full changelog.
 
@@ -48,7 +48,7 @@ If highlights are available, add one short clause with the main changes. Do not 
 ### Install
 
 ```bash
-npx skills add https://github.com/zeng121/skill-beta.git --skill test-openapi
+npx skills add https://github.com/fotor-ai/fotor-skills.git --skill fotor-skills
 ```
 
 ### Upgrade
@@ -61,7 +61,7 @@ npx skills update
 
 Use a short reminder like:
 
-> `test-openapi` has a newer version available. If you want, you can upgrade with `npx skills update`.
+> `fotor-skills` has a newer version available. If you want, you can upgrade with `npx skills update`.
 
 If highlights are available, add one short clause with the main changes. Do not dump the full changelog.
 
