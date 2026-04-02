@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.9 - 2026-04-02
+- Bump the published skill version to `1.0.9`
+- Align the credit lookup example in `SKILL.md` with the default `FOTOR_OPENAPI_ENDPOINT` value of `https://api-b.fotor.com`
+
 ## v1.0.8 - 2026-04-01
 - Align `SKILL.md` frontmatter with ClawHub's documented skill format by using a top-level `version` field
 - Declare `metadata.openclaw` runtime requirements for `FOTOR_OPENAPI_KEY`, `uv`, local config files, and homepage metadata

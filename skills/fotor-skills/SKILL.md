@@ -1,7 +1,7 @@
 ---
 name: fotor-skills
 description: Use when the user's intent is visual and the task can be solved with Fotor OpenAPI image or video generation, editing, transformation, enhancement, batch output, or account credit lookup, including product photos, marketing creatives, posters,banners, social covers, background changes, upscaling, restoration, and other image- or video-related asset workflows.
-version: 1.0.8
+version: 1.0.9
 metadata:
   author: fotor-ai
   openclaw:
@@ -228,7 +228,7 @@ from fotor_sdk import FotorClient
 
 client = FotorClient(
     api_key=os.environ["FOTOR_OPENAPI_KEY"],
-    endpoint=os.environ.get("FOTOR_OPENAPI_ENDPOINT", "https://api.fotor.com"),
+    endpoint=os.environ.get("FOTOR_OPENAPI_ENDPOINT", "https://api-b.fotor.com"),
 )
 credits = client.get_credits_sync()
 print("credits:", credits)
