@@ -1,7 +1,7 @@
 ---
 name: fotor-skills
 description: Use when the user's intent is visual and the task can be solved with Fotor OpenAPI image or video generation, editing, transformation, enhancement, batch output, account credit lookup, or recharge guidance, including product photos, marketing creatives, posters,banners, social covers, background changes, upscaling, restoration, and other image- or video-related asset workflows.
-version: 1.0.10
+version: 1.0.11
 metadata:
   author: fotor-ai
   openclaw:
@@ -151,7 +151,7 @@ The script:
 
 - Detects the install source first: `clawhub` or `skills-github`
 - For `clawhub`, reads installed `_meta.json` and fetches the latest version via `clawhub inspect <slug> --json`
-- For `skills-github`, reads local `SKILL.md` frontmatter `metadata.version`, finds the GitHub source, and fetches the remote `SKILL.md` version plus `CHANGELOG.md` highlights when available
+- For `skills-github`, reads local `SKILL.md` frontmatter top-level `version` field, falls back to legacy `metadata.version`, finds the GitHub source, and fetches the remote `SKILL.md` version plus `CHANGELOG.md` highlights when available
 - Prints JSON with `install_source`, `current_version`, `latest_version`, `update_available`, and `should_notify`
 - Stores the last-notified version in a local state file when `--mark-notified` is used
 - Caches the last successful version check and supports a minimum recheck interval via `--check-interval-hours` (default 24)

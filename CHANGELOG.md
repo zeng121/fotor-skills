@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.11 - 2026-04-03
+- Bump the published skill version to `1.0.11`
+- Update `scripts/check_skill_update.py` to read the top-level `version` field first and fall back to legacy `metadata.version` for GitHub-based installs
+- Align the update-check documentation in `SKILL.md` and `README.md` with the top-level `version` field
+
 ## v1.0.10 - 2026-04-03
 - Bump the published skill version to `1.0.10`
 - Add recharge guidance to `SKILL.md`, including calling `GET /v1/payment/links` when users ask how to buy credits or top up
