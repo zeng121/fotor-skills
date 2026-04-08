@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.13 - 2026-04-08
+- Bump the published skill version to `1.0.13`
+- Add `skills/fotor-skills/references/get_api_key.md` for homepage and API key onboarding
+- Remove `skills/fotor-skills/references/configure-fotor-openapi-key.md` and fold key guidance into the new onboarding reference
+- Update `skills/fotor-skills/SKILL.md` and `README.md` to match the new routing and published version
+
 ## v1.0.12 - 2026-04-07
 - Bump the published skill version to `1.0.12`
 - Refresh the `skills/fotor-skills/SKILL.md` description with a broader product-style summary covering AI photo editing, AI video generation, and common marketing and e-commerce asset workflows
