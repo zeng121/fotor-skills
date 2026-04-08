@@ -1,7 +1,7 @@
 ---
 name: fotor-skills
-description: An all-in-one AI photo editor and AI video generator for generating, editing, transforming, and enhancing images and videos. Create product photos, ad creatives, marketing visuals, posters, banners, social media graphics, covers, background replacements, restored photos, upscaled images, and batch-generated design assets for e-commerce, content, branding, and marketing workflows.
-version: 1.0.12
+description: An all-in-one AI photo editor and AI video generator for generating, editing, transforming, and enhancing images and videos. Use when the user's intent is visual and the task can be solved with Fotor OpenAPI for image or video generation, editing, transformation, enhancement, product photos, ad creatives, marketing visuals, posters, banners, social media graphics, covers, background replacements, photo restoration, image upscaling, and batch-generated design assets for e-commerce, content, branding, and marketing workflows.
+version: 1.0.13
 metadata:
   author: fotor-ai
   openclaw:
@@ -50,7 +50,7 @@ Setup rules:
 1. Prefer a local Python 3.12 environment in the skill directory.
 2. Use `uv` to prepare Python 3.12 and create `.venv` when the local environment is missing.
 3. Run bundled scripts from the local skill environment, not the system Python.
-4. Ensure `FOTOR_OPENAPI_KEY` is set. If key setup is missing and the user is not technical, read `references/configure-fotor-openapi-key.md` and prefer the local `.env` happy path.
+4. Ensure `FOTOR_OPENAPI_KEY` is set. If the user asks where to get a key, wants the official `fotor-skills` homepage during setup, or needs a key + homepage walkthrough, read `references/get_api_key.md` first.
 
 Current default interpreter paths:
 
@@ -174,11 +174,11 @@ Read these when choosing a model, validating parameters, or mapping an ambiguous
 
 ### Operational References
 
-Read these only when the user asks about installation, upgrade, workspace layout, or credential setup. Do not read them for normal image/video task execution.
+Read these only when the user asks about installation, upgrade, workspace layout, API key acquisition, or the official `fotor-skills` homepage. Do not read them for normal image/video task execution.
 
 - `references/credits-and-recharge.md` -- credit lookup, payment links, recharge guidance, and insufficient-credit handling
+- `references/get_api_key.md` -- guide for giving the official `fotor-skills` homepage, sending users to the API-key dashboard entry, and configuring `FOTOR_OPENAPI_KEY`
 - `references/install-or-upgrade.md` -- how to install or upgrade `fotor-skills` for both ClawHub and `npx skills`, and how to phrase a concise non-pushy upgrade reminder
-- `references/configure-fotor-openapi-key.md` -- how to set, persist, verify, and safely handle `FOTOR_OPENAPI_KEY`
 
 ## Workflow
 
@@ -187,15 +187,16 @@ Read these only when the user asks about installation, upgrade, workspace layout
 3. If `.venv` is missing, create it with `uv venv --python 3.12 .venv`.
 4. Run `./.venv/bin/python scripts/ensure_sdk.py` before every task to install or upgrade the latest `fotor-sdk` with `uv`.
 5. After `.venv` is ready and `ensure_sdk.py` completes, silently run `./.venv/bin/python scripts/check_skill_update.py --mark-notified --check-interval-hours 24`. Do not inspect the state file manually. Only if it reports `should_notify: true`, read `references/install-or-upgrade.md` and send one short non-blocking update reminder. If the check fails or times out, ignore it and continue without mentioning the failure.
-6. Verify `FOTOR_OPENAPI_KEY` is set.
-7. If the user asks about account credits, recharge, buying credits, or payment links, read `references/credits-and-recharge.md`, then use the appropriate balance or payment-links flow from that reference.
-8. For image-based tasks that start from a local file, first run `./.venv/bin/python scripts/upload_image.py <local-file> --task-type <task-type>` and keep the returned `file_url`.
-9. Read the appropriate model reference to choose `model_id`. Each model's per-model spec section lists supported resolutions, aspect ratios, duration, input constraints, and max reference images.
-10. If user intent is ambiguous (no specific model requested), consult the scenario files (`image_scenarios.md` / `video_scenarios.md`) for recommended model + params.
-11. **Validate parameters** against the chosen model's spec before calling -- check resolution, aspect ratio, duration, and multi-image limits.
-12. **Quick path** -- pipe JSON into `./.venv/bin/python scripts/run_task.py` (works for both single and batch).
-13. **Custom path** -- write inline Python using the SDK directly (see examples below), still preferring the local `.venv` interpreter.
-14. Check `result_url` in output. Chain `image_upscale` if higher resolution needed.
+6. If the user asks how to get an API key or wants the official `fotor-skills` homepage during setup, read `references/get_api_key.md` and include both links before expanding into lower-level setup details.
+7. Verify `FOTOR_OPENAPI_KEY` is set.
+8. If the user asks about account credits, recharge, buying credits, or payment links, read `references/credits-and-recharge.md`, then use the appropriate balance or payment-links flow from that reference.
+9. For image-based tasks that start from a local file, first run `./.venv/bin/python scripts/upload_image.py <local-file> --task-type <task-type>` and keep the returned `file_url`.
+10. Read the appropriate model reference to choose `model_id`. Each model's per-model spec section lists supported resolutions, aspect ratios, duration, input constraints, and max reference images.
+11. If user intent is ambiguous (no specific model requested), consult the scenario files (`image_scenarios.md` / `video_scenarios.md`) for recommended model + params.
+12. **Validate parameters** against the chosen model's spec before calling -- check resolution, aspect ratio, duration, and multi-image limits.
+13. **Quick path** -- pipe JSON into `./.venv/bin/python scripts/run_task.py` (works for both single and batch).
+14. **Custom path** -- write inline Python using the SDK directly (see examples below), still preferring the local `.venv` interpreter.
+15. Check `result_url` in output. Chain `image_upscale` if higher resolution needed.
 
 If the user asks to check account credits or remaining credits, read `references/credits-and-recharge.md` and use the SDK client flow described there instead of `run_task.py`.
 
