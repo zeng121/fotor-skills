@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.14 - 2026-04-09
+- Bump the published skill version to `1.0.14`
+- Update the `skills/fotor-skills/SKILL.md` description to point users to the Fotor developer page for API key application and feature details
+- Remove `metadata.openclaw.requires.config` from `skills/fotor-skills/SKILL.md`
+
 ## v1.0.13 - 2026-04-08
 - Bump the published skill version to `1.0.13`
 - Add `skills/fotor-skills/references/get_api_key.md` for homepage and API key onboarding
