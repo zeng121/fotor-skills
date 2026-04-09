@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.15 - 2026-04-09
+- Bump the published skill version to `1.0.15`
+- Update GitHub / `npx skills` install commands to use `--copy -y` in `README.md` and `skills/fotor-skills/references/install-or-upgrade.md`
+
 ## v1.0.14 - 2026-04-09
 - Bump the published skill version to `1.0.14`
 - Update the `skills/fotor-skills/SKILL.md` description to point users to the Fotor developer page for API key application and feature details

@@ -48,7 +48,7 @@ If highlights are available, add one short clause with the main changes. Do not 
 ### Install
 
 ```bash
-npx skills add https://github.com/fotor-ai/fotor-skills.git --skill fotor-skills
+npx skills add https://github.com/fotor-ai/fotor-skills.git --skill fotor-skills --copy -y
 ```
 
 ### Upgrade

@@ -1,6 +1,6 @@
 # Fotor Skills
 
-Current public skill version: `1.0.14`
+Current public skill version: `1.0.15`
 
 This repository stores reusable [Agent Skills](https://skills.sh/) for Fotor AI.
 
@@ -56,7 +56,7 @@ clawhub install fotor-skills
 ### GitHub / `npx skills`
 
 ```bash
-npx skills add https://github.com/fotor-ai/fotor-skills.git --skill fotor-skills
+npx skills add https://github.com/fotor-ai/fotor-skills.git --skill fotor-skills --copy -y
 ```
 
 ## Quick Start
